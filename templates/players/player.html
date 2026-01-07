@@ -1,0 +1,17 @@
+{{ define "title" }}{{ .data.Name }}{{ end }}
+
+{{ define "content" }}
+    <h1 class="text-4xl font-bold">{{ .data.Name }}</h1>
+
+    <div>
+        {{ range $k, $cred := .data.Credentials }}
+            {{ if eq $k "steam" }}
+                <a href="https://steamcommunity.com/profiles/{{ $cred }}">Steam</a>
+            {{ else if eq $k "facebook" }}
+                <a href="https://www.facebook.com/{{ $cred }}" target="_blank">Facebook</a>
+            {{ else }}
+                <span>{{ $k }}: <code>{{ $cred }}</code></span>
+            {{ end }}
+        {{ end }}
+    </div>
+{{ end }}

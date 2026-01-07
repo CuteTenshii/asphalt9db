@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+    th, td {
+        padding: 0.5rem;
+        border-bottom: 1px solid theme(colors.gray.200);
+    }
+
+    th {
+        text-align: left;
+    }
+
+    td {
+        border-left: 1px solid theme(colors.gray.200);
+        border-right: 1px solid theme(colors.gray.200);
+    }
+}

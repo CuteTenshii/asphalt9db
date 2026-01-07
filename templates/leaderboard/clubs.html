@@ -1,0 +1,34 @@
+{{ define "title" }}Clubs Leaderboard{{ end }}
+
+{{ define "content" }}
+    <h1 class="text-4xl font-bold">Clubs Leaderboard</h1>
+    <p>List of the clubs with the most score</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th></th>
+            <th>Members</th>
+            <th>Last Editor</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {{ range $v := .data }}
+            <tr>
+                <td>#{{ $v.Rank }}</td>
+                <td>
+                    <a href="/clubs/{{ $v.ID }}">{{ $v.DisplayName }}</a>
+                </td>
+                <td>{{ $v.Score }}</td>
+                <td>{{ $v.ClanSize }}</td>
+                <td>
+                    <a href="/players/{{ $v.LastEditor.Credential }}">{{ $v.LastEditor.Name }}</a>
+                </td>
+            </tr>
+        {{ end }}
+        </tbody>
+    </table>
+{{ end }}
