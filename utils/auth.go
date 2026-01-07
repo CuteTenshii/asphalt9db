@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"time"
 
 	"github.com/carlmjohnson/requests"
 )
@@ -25,7 +26,7 @@ func GetAccessToken() (string, error) {
 	}
 
 	deviceInformation := map[string]string{
-		"id":         "",
+		"id":         "2008971685286699808", // Any value is accepted, but you can get yours in C:\Users\<username>\Documents\Gameloft\Asphalt 9 Legends\device_launch_info
 		"model":      "System Product Name",
 		"country":    "US",
 		"language":   "en",
@@ -50,7 +51,7 @@ func GetAccessToken() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	rdb.Set(ctx, cacheKey, resp.AccessToken, 0)
+	rdb.Set(ctx, cacheKey, resp.AccessToken, 4*time.Hour)
 
 	return resp.AccessToken, nil
 }

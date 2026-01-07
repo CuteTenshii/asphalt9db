@@ -44,6 +44,10 @@ func GetClubsLeaderboard(limit, offset int) (*LeaderboardResponse[LeaderboardClu
 	return GetLeaderboard[LeaderboardClubResponse]("8321aa3c-d5f7-11f0-b8b4-b8ca3a634708", limit, offset)
 }
 
+func GetMultiplayerTopLeaderboard(limit, offset int) (*LeaderboardResponse[LeaderboardPlayerResponse], error) {
+	return GetLeaderboard[LeaderboardPlayerResponse]("1a3974e4-d5fe-11f0-b910-b8ca3a634708", limit, offset)
+}
+
 type LeaderboardResponse[T any] struct {
 	Data         []T    `json:"data"`
 	ID           string `json:"id"`
@@ -63,4 +67,14 @@ type LeaderboardClubResponse struct {
 	LastUpdate  string   `json:"last_update"`
 	Score       float64  `json:"score"`
 	Rank        float64  `json:"rank"`
+}
+
+type LeaderboardPlayerResponse struct {
+	Credential  string  `json:"credential"`
+	DisplayName string  `json:"display_name"`
+	FoxyJson    string  `json:"_foxy_json_"`
+	LastUpdate  string  `json:"last_update"`
+	Score       float64 `json:"score"`
+	ID          string  `json:"id"`
+	Rank        float64 `json:"rank"`
 }
