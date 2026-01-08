@@ -58,7 +58,7 @@ func Multiplayer(w http.ResponseWriter, r *http.Request) {
 			Platform:    foxyJson.Platform,
 			Credentials: utils.MakeCredentialsMap(foxyJson.AllCredentials),
 		}
-		if err := db.Create(&player).Error; err != nil {
+		if err := db.Clauses(clause.OnConflict{DoNothing: true}).Create(&player).Error; err != nil {
 			panic(err)
 		}
 	}
